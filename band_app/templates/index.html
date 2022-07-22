@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Bienvenido a BANDAS</h1>
+    <form action="crearBanda" method="post">
+        {% csrf_token %}
+        <label for="nombre">Nombre de la Banda</label>
+        <input type="text" name="nombre">
+        <label for="descripcion">Descripcion</label>
+        <input type="text" name="descripcion">
+        <label for="pais">Pais</label>
+        <input type="text" name="pais" >
+        <input type="submit" value="Crear Banda">
+    </form>
+    <h2>Crear Fan</h2>
+    <form action="crearFan" method="post">
+        {% csrf_token %}
+        <label for="nombreFan">Nombre de Fan</label>
+        <input type="text" name="nombreFan">
+        <input type="submit">
+    </form>
+    <hr>
+    <h2>Todas las bandas</h2>
+    {% for banda in bandas %}
+    <p><a href="showBand/{{banda.id}}">{{banda.nombre}}</a></p>
+    <p>{{banda.descripcion}}</p>
+    <p>{{banda.pais}}</p>
+    {% endfor %}
+
+    
+</body>
+</html>

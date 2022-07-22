@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{banda.nombre}}</h1>
+    <p>{{banda.descripcion}}</p>
+    <p>{{banda.pais}}</p>
+    
+    <form action="/agregarFan/{{banda.id}}" method="POST">
+        {% csrf_token %}
+        <select name="agregarFan" >
+            {% for fan in fans %}
+            <option value="{{fan.id}}" >{{fan.nombre}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit">
+    </form>
+    <h2>TODOS LOS FANS</h2>
+    {% for fan in banda.fans.all %}
+    <p> {{fan.nombre }}</p>
+    {% endfor %}
+</body>
+</html>
